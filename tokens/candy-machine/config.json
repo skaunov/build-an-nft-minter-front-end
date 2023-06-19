@@ -1,0 +1,22 @@
+{
+  "tokenStandard": "nft",
+  "number": 2,
+  "symbol": "BLDR",
+  "sellerFeeBasisPoints": 0,
+  "isMutable": true,
+  "isSequential": false,
+  "creators": [
+    {
+      "address": "Dkx34bvvWKykU1NMnh4oXqmCYPxr5Jaue77bHB6QZJg9",
+      "share": 100
+    }
+  ],
+  "uploadMethod": "bundlr",
+  "ruleSet": null,
+  "awsConfig": null,
+  "nftStorageAuthToken": null,
+  "shdwStorageAccount": null,
+  "pinataConfig": null,
+  "hiddenSettings": null,
+  "guards": null
+}

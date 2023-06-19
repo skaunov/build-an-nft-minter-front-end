@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "create-bld-token": "ts-node ./src/tokens/bld/index.ts"
+    "create-bld-token": "ts-node ./tokens/bld/index.ts"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
@@ -15,7 +15,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@metaplex-foundation/js": "*",
-    "@metaplex-foundation/mpl-token-metadata": "~2.2.0",
+    "@metaplex-foundation/mpl-token-metadata": "~2.12.0",
     "@solana/spl-token": "*",
     "@solana/wallet-adapter-base": "^0.9.22",
     "@solana/wallet-adapter-react": "^0.15.32",

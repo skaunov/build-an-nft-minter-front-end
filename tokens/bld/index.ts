@@ -7,7 +7,7 @@ import {
     bundlrStorage, keypairIdentity, Metaplex, toMetaplexFile
 } from "@metaplex-foundation/js";
 
-import {DataV2, createCreateMetadataAccountV2Instruction} from "@metaplex-foundation/mpl-token-metadata";
+import {DataV2, createCreateMetadataAccountV3Instruction} from "@metaplex-foundation/mpl-token-metadata";
 
 const TOKEN_NAME = "BUILD";
 const TOKEN_SYMBOL = "BLD";
@@ -34,18 +34,26 @@ async function createBldToke(connection: web3.Connection, payer: web3.Keypair) {
     const metadataPda = metaplex.nfts().pdas().metadata({mint: tokenMint});
     const tokenMetadata = {
         name: TOKEN_NAME, symbol: TOKEN_SYMBOL, uri, sellerFeeBasisPoints: 0,
-        creators: null, uses: null
+        creators: null, // [{address: payer.publicKey}], 
+        uses: null, collection: null
     } as DataV2;
+    
 
-    const ix = createCreateMetadataAccountV2Instruction(
-        {
-            metadata: metadataPda,
-            mint: tokenMint,
-            mintAuthority: payer.publicKey,
-            payer: payer.publicKey,
-            updateAuthority: payer.publicKey
-        },
-        {createMetadataAccountArgsV2:{data: tokenMetadata, isMutable: true}}
+    const ix_accounts = {
+        metadata: metadataPda,
+        mint: tokenMint,
+        mintAuthority: payer.publicKey,
+        payer: payer.publicKey,
+        updateAuthority: payer.publicKey
+    };
+    console.debug(ix_accounts);
+    console.debug(tokenMetadata);
+    const ix = createCreateMetadataAccountV3Instruction(
+        ix_accounts,
+        {createMetadataAccountArgsV3:{
+            data: tokenMetadata, isMutable: true,
+            collectionDetails: null
+        }}
     );
 
     const tx = new web3.Transaction().add(ix);
